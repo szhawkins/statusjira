@@ -3,11 +3,11 @@
 class ticket (object):
     """A simple class"""
 
-    def __init__(self, Number, Description, Status, EstHrs, 
+    def __init__(self, Number, Summary, Status, EstHrs, 
                        WorkHrs, HrsLeft, EpicLink):
 
-        self.__ticketNumber = 0
-        self.__ticketDescription = ""
+        self.__ticketNumber = Number
+        self.__ticketSummary = Summary
         self.__ticketStatus = 0
         self.__ticketEstHrs = 0
         self.__ticketWorkHrs = 0
@@ -15,4 +15,9 @@ class ticket (object):
         self.__ticketEpicLink = ""
 
 
+    def number (self):
+        return (self.__ticketNumber)
+
+    def summary (self):
+        return (self.__ticketSummary)
 
