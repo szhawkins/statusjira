@@ -3,27 +3,50 @@ from statusjira import jiraticket
 
 class TestJiraTicket(unittest.TestCase):
 
+    def setUp(self):
+        self.Number = 1234
+        self.Summary = "Summary"
+        self.Status = 1
+        self.EstHrs = 27
+        self.WorkHrs = 23
+        self.HrsLeft = 4
+        self.EpicLink = "foo.com"
+
     def test_createobj(self):
-        Number = 1234
-        Summary = "Summary"
-        Status = 1
-        EstHrs = 27
-        WorkHrs = 23
-        HrsLeft = 4
-        EpicLink = "foo.com"
 
-        ticket = jiraticket.ticket (Number, Summary, Status, 
-                                    EstHrs, WorkHrs,     HrsLeft, 
-                                    EpicLink)
+        ticket = jiraticket.ticket (self.Number, self.Summary, self.Status, 
+                                    self.EstHrs, self.WorkHrs, self.HrsLeft, 
+                                    self.EpicLink)
 
-        self.assertEqual (Number, ticket.number())
-        self.assertEqual (Summary, ticket.summary())
-        self.assertEqual (Status,  ticket.status())
-        self.assertEqual (EstHrs, ticket.estimatedHrs())
-        self.assertEqual (WorkHrs, ticket.workHrs())
-        self.assertEqual (HrsLeft, ticket.remainingHrs())
-        self.assertEqual (EpicLink, ticket.epicLink())
+        self.assertEqual (self.Number, ticket.number())
+        self.assertEqual (self.Summary, ticket.summary())
+        self.assertEqual (self.Status,  ticket.status())
+        self.assertEqual (self.EstHrs, ticket.estimatedHrs())
+        self.assertEqual (self.WorkHrs, ticket.workHrs())
+        self.assertEqual (self.HrsLeft, ticket.remainingHrs())
+        self.assertEqual (self.EpicLink, ticket.epicLink())
         
+    def test_percentComplete(self):
+
+        # The following collecton associates a ticket status value with its expected percent complete
+        testdata = [(jiraticket.const._open, 0),            #  0% Complete
+                    (jiraticket.const._developerTest, 50),  # 50% Complete
+                    (jiraticket.const._inProgress, 25),     # 25% Complete
+                    (jiraticket.const._resolved, 75),       # 75% Complete
+                    (jiraticket.const._reopened, 0),        #  0% Complete
+                    (jiraticket.const._closed, 100),        #100% Complete
+                    (jiraticket.const._productBacklog, 0),  #  0% Complete
+                    (jiraticket.const._codeReview, 50),     # 50% Complete
+                    (jiraticket.const._waitingForInput, 0), #  0% Complete
+                    (jiraticket.const._pendingApproval, 0)] #  0% Complete
+
+        for record in testdata:
+            ticket = jiraticket.ticket (self.Number, self.Summary, record[0], 
+                                        self.EstHrs, self.WorkHrs, self.HrsLeft, 
+                                        self.EpicLink)
+
+            self.assertEqual (record[1], ticket.percentComplete())       
+
 
 if __name__ == '__main__':
     unittest.main()
