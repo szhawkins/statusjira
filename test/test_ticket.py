@@ -16,12 +16,14 @@ class TestJiraTicket(unittest.TestCase):
                                     EstHrs, WorkHrs,     HrsLeft, 
                                     EpicLink)
 
-
         self.assertEqual (Number, ticket.number())
         self.assertEqual (Summary, ticket.summary())
-
-# **** Test methods: number, description, status, esthrs, workhrs, remainhrs, epiclink ***
-
+        self.assertEqual (Status,  ticket.status())
+        self.assertEqual (EstHrs, ticket.estimatedHrs())
+        self.assertEqual (WorkHrs, ticket.workHrs())
+        self.assertEqual (HrsLeft, ticket.remainingHrs())
+        self.assertEqual (EpicLink, ticket.epicLink())
+        
 
 if __name__ == '__main__':
     unittest.main()

@@ -8,11 +8,11 @@ class ticket (object):
 
         self.__ticketNumber = Number
         self.__ticketSummary = Summary
-        self.__ticketStatus = 0
-        self.__ticketEstHrs = 0
-        self.__ticketWorkHrs = 0
-        self.__ticketHrsLeft = 0
-        self.__ticketEpicLink = ""
+        self.__ticketStatus = Status
+        self.__ticketEstHrs = EstHrs
+        self.__ticketWorkHrs = WorkHrs
+        self.__ticketHrsLeft = HrsLeft
+        self.__ticketEpicLink = EpicLink
 
 
     def number (self):
@@ -20,4 +20,19 @@ class ticket (object):
 
     def summary (self):
         return (self.__ticketSummary)
+
+    def status (self):
+        return (self.__ticketStatus)
+
+    def estimatedHrs (self):
+        return (self.__ticketEstHrs)
+
+    def workHrs (self):
+        return (self.__ticketWorkHrs)
+
+    def remainingHrs(self):
+        return (self.__ticketHrsLeft)
+
+    def epicLink(self):
+        return (self.__ticketEpicLink)
 
