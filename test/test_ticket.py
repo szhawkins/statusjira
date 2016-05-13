@@ -10,13 +10,13 @@ class TestJiraTicket(unittest.TestCase):
         self.EstHrs = 27
         self.WorkHrs = 23
         self.HrsLeft = 4
-        self.EpicLink = "foo.com"
+        self.EpicTicket = "RWS-9999"
 
     def test_createobj(self):
 
         ticket = jiraticket.ticket (self.Number, self.Summary, self.Status, 
                                     self.EstHrs, self.WorkHrs, self.HrsLeft, 
-                                    self.EpicLink)
+                                    self.EpicTicket)
 
         self.assertEqual (self.Number, ticket.number())
         self.assertEqual (self.Summary, ticket.summary())
@@ -24,7 +24,7 @@ class TestJiraTicket(unittest.TestCase):
         self.assertEqual (self.EstHrs, ticket.estimatedHrs())
         self.assertEqual (self.WorkHrs, ticket.workHrs())
         self.assertEqual (self.HrsLeft, ticket.remainingHrs())
-        self.assertEqual (self.EpicLink, ticket.epicLink())
+        self.assertEqual (self.EpicTicket, ticket.epicTicket())
         
     def test_percentComplete(self):
 
@@ -43,7 +43,7 @@ class TestJiraTicket(unittest.TestCase):
         for record in testdata:
             ticket = jiraticket.ticket (self.Number, self.Summary, record[0], 
                                         self.EstHrs, self.WorkHrs, self.HrsLeft, 
-                                        self.EpicLink)
+                                        self.EpicTicket)
 
             self.assertEqual (record[1], ticket.percentComplete())       
 

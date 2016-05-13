@@ -29,15 +29,15 @@ class ticket (object):
     """Class to contain the elements of a single Jira ticket"""
 
     def __init__(self, Number, Summary, Status, EstHrs, 
-                       WorkHrs, HrsLeft, EpicLink):
+                       WorkHrs, HrsLeft, EpicTicket):
 
-        self.__ticketNumber = Number     # Integer
-        self.__ticketSummary = Summary   # Text
-        self.__ticketStatus = Status     # Integer
-        self.__ticketEstHrs = EstHrs     # Integer
-        self.__ticketWorkHrs = WorkHrs   # Integer
-        self.__ticketHrsLeft = HrsLeft   # Integer
-        self.__ticketEpicLink = EpicLink # Text
+        self.__ticketNumber = Number         # Integer
+        self.__ticketSummary = Summary       # Text
+        self.__ticketStatus = Status         # Integer
+        self.__ticketEstHrs = EstHrs         # Integer
+        self.__ticketWorkHrs = WorkHrs       # Integer
+        self.__ticketHrsLeft = HrsLeft       # Integer
+        self.__ticketEpicTicket = EpicTicket # Text
 
 
     def number (self):
@@ -58,8 +58,8 @@ class ticket (object):
     def remainingHrs(self):
         return (self.__ticketHrsLeft)
 
-    def epicLink(self):
-        return (self.__ticketEpicLink)
+    def epicTicket(self):
+        return (self.__ticketEpicTicket)
 
     def percentComplete(self):
         if self.__ticketStatus == const._open:
