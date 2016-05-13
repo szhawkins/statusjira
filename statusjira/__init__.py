@@ -1,3 +1,3 @@
 
-__all__ = ["jiraticket"]
+__all__ = ["jiraticket", "projectxml"]
 

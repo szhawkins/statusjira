@@ -1,4 +1,4 @@
-scripts=test_ticket.py
+scripts=test_ticket.py test_projectxml.py
 
 
 unittest: $(scripts) 
