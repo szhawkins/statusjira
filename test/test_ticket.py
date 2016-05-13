@@ -1,5 +1,5 @@
 import unittest
-from statusjira import jiraticket
+from statusjira import jiraticket as jt
 
 class TestJiraTicket(unittest.TestCase):
 
@@ -14,7 +14,7 @@ class TestJiraTicket(unittest.TestCase):
 
     def test_createobj(self):
 
-        ticket = jiraticket.ticket (self.Number, self.Summary, self.Status, 
+        ticket = jt.ticket (self.Number, self.Summary, self.Status, 
                                     self.EstHrs, self.WorkHrs, self.HrsLeft, 
                                     self.EpicTicket)
 
@@ -29,19 +29,19 @@ class TestJiraTicket(unittest.TestCase):
     def test_percentComplete(self):
 
         # The following collecton associates a ticket status value with its expected percent complete
-        testdata = [(jiraticket.const._open, 0),            #  0% Complete
-                    (jiraticket.const._developerTest, 50),  # 50% Complete
-                    (jiraticket.const._inProgress, 25),     # 25% Complete
-                    (jiraticket.const._resolved, 75),       # 75% Complete
-                    (jiraticket.const._reopened, 0),        #  0% Complete
-                    (jiraticket.const._closed, 100),        #100% Complete
-                    (jiraticket.const._productBacklog, 0),  #  0% Complete
-                    (jiraticket.const._codeReview, 50),     # 50% Complete
-                    (jiraticket.const._waitingForInput, 0), #  0% Complete
-                    (jiraticket.const._pendingApproval, 0)] #  0% Complete
+        testdata = [(jt.const._open, 0),            #  0% Complete
+                    (jt.const._developerTest, 50),  # 50% Complete
+                    (jt.const._inProgress, 25),     # 25% Complete
+                    (jt.const._resolved, 75),       # 75% Complete
+                    (jt.const._reopened, 0),        #  0% Complete
+                    (jt.const._closed, 100),        #100% Complete
+                    (jt.const._productBacklog, 0),  #  0% Complete
+                    (jt.const._codeReview, 50),     # 50% Complete
+                    (jt.const._waitingForInput, 0), #  0% Complete
+                    (jt.const._pendingApproval, 0)] #  0% Complete
 
         for record in testdata:
-            ticket = jiraticket.ticket (self.Number, self.Summary, record[0], 
+            ticket = jt.ticket (self.Number, self.Summary, record[0], 
                                         self.EstHrs, self.WorkHrs, self.HrsLeft, 
                                         self.EpicTicket)
 
