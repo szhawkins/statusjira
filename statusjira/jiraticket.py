@@ -3,6 +3,7 @@
 class const (object):
     """Constants used by the jiraticket module"""
 
+    _unknown = -1            #Status value is not available
     _open = 1                #Verified in Jira
     _developerTest = 10006   #Verified in Jira   
     _inProgress = 3          #Verified in Jira
@@ -31,7 +32,7 @@ class ticket (object):
     def __init__(self, Number, Summary, Status, EstHrs, 
                        WorkHrs, HrsLeft, EpicTicket):
 
-        self.__ticketNumber = Number         # Integer
+        self.__ticketNumber = Number         # Text (e.g. RWS-1234)
         self.__ticketSummary = Summary       # Text
         self.__ticketStatus = Status         # Integer
         self.__ticketEstHrs = EstHrs         # Integer
