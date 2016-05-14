@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import xml.etree.ElementTree as ET
+import statusjira.appglobal as AG
 
 class const (object):
     """Constants used by the jiraticket module"""
@@ -44,12 +45,10 @@ class file (object):
         try: 
             status_int = int (status_text)
         except:
-            status_int = -1
+            status_int = AG.status._unknown
 
-        valid_status = [1, 10006, 3, 5, 992, 6, 991, 10004, 10822, 10021]
-
-        if (not status_int in valid_status):
-            status_int = -1
+        if (not status_int in AG.status._valid):
+            status_int = AG.const_unknown
 
         return status_int
 
