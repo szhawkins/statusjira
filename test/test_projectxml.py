@@ -8,7 +8,7 @@ class TestProjectXML(unittest.TestCase):
         self.__testFile1 = "test/JiraProjectTestData.xml"
         self.__numtkts1  = 3
         self.__testFile2 = "test/JiraProjectTestDataLarge.xml"
-        self.__numtkts2  = 368
+        self.__numtkts2  = 455
 
         self.projectFile = prj.file()
 

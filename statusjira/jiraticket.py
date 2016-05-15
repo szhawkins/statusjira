@@ -47,3 +47,14 @@ class ticket (object):
         #percent complete value
 
         return (AG.status._percentcomplete.get(self.__ticketStatus, AG.status._unknown))
+
+    def text(self):
+        typetext = AG.type._name.get(self.__ticketType, "Unknown")
+        statustext = AG.status._text.get(self.__ticketStatus, "Unknown")
+        pcttext = str(self.percentComplete())
+
+        return str.format ("Ticket: {}  Type: {}  Status: {}  Pct comp: {}  Summary: {}", 
+                           self.number(), typetext, statustext, pcttext, self.summary())
+
+
+

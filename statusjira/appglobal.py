@@ -47,6 +47,12 @@ class status (object):
                         _waitingForInput:_pctWaitingForInput, 
                         _pendingApproval:_pctPendingApproval}
 
+    #Dictionary used to convert status ID's into their corresponding status values
+    _text = {_unknown:'unknown', _open:'Open', _developerTest:'Developer Test',
+             _inProgress:'In Progress', _resolved:'Resolved', _reopened:'Re-Opened', 
+             _closed:'Closed', _productBacklog:'Product Backlog', _codeReview:'Code Review',
+             _waitingForInput:'Waiting For Input', _pendingApproval:'PendingApproval'}
+
 class tags (object):
     """Contains tag constants used by the status jira package"""
 
@@ -78,15 +84,15 @@ class type (object):
     _story = 7
 
     #Mapping of ticket type ID's to ticket type names
-    _name = {_unknown, 'Unknown',
-            _bug, 'Bug',
-            _sccbreq, 'SCCB Request',
-            _archdesign, 'Architecture Design',
-            _analysis, 'Analysis',
-            _task, 'Task',
-            _subtask, 'Sub-Task',
-            _epic, 'Epic',
-            _story, 'Story'}
+    _name = {_unknown:'Unknown',
+            _bug:'Bug',
+            _sccbreq:'SCCB Request',
+            _archdesign:'Architecture Design',
+            _analysis:'Analysis',
+            _task:'Task',
+            _subtask:'Sub-Task',
+            _epic:'Epic',
+            _story:'Story'}
 
 
 

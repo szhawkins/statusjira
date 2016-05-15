@@ -10,10 +10,10 @@ class TestJiraTicket(unittest.TestCase):
         self.__testFile1 = "test/JiraProjectTestData.xml"
         self.__numtkts1  = 3
         self.__testFile2 = "test/JiraProjectTestDataLarge.xml"
-        self.__numtkts2  = 368
+        self.__numtkts2  = 455
 
         self.__projectFile = PX.file()
-        self.__projectFile.load (self.__testFile1)
+        self.__projectFile.load (self.__testFile2)
         self.__listoftickets=self.__projectFile.findalltickets();
 
     def test_findallepics(self):
@@ -35,6 +35,11 @@ class TestJiraTicket(unittest.TestCase):
         project.createepics(self.__listoftickets)
         self.assertNotEqual(0, len(project.listofepictickets()))
         self.assertNotEqual(0, len(project.listofepics()))
+    
+#        for epic in project.listofepics():
+#            print epic.text()
+
+        print project.text()
 
     def test_epicinit(self):
         #make sure that there are tickets in the list
@@ -45,9 +50,6 @@ class TestJiraTicket(unittest.TestCase):
         project.findallepics(self.__listoftickets)
         listofepictickets = project.listofepictickets()
         self.assertNotEqual(0, len(project.listofepictickets()))
-
-        epic = JP.epic(listofepictickets[1], self.__listoftickets)
-        print epic.text()
 
 if __name__ == '__main__':
     unittest.main()

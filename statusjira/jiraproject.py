@@ -8,10 +8,13 @@ class epic (object):
 
     def __init__(self, epicticket, listoftickets):
         self.__epicticket = epicticket
+        self.__summary = ""
         self.__tickets = list()
 
         for tktdata in listoftickets:
-            if (tktdata[7] == epicticket):
+            if (tktdata[0] == self.__epicticket):
+                self.__summary = tktdata[2]
+            elif (tktdata[7] == epicticket):
                 ticketobj = JT.ticket(tktdata[0], tktdata[1], tktdata[2], tktdata[3],
                                       tktdata[4], tktdata[5], tktdata[6], tktdata[7])
                 self.__tickets.append(ticketobj)
@@ -24,7 +27,7 @@ class epic (object):
             epiccurrent += tkt.percentComplete()
 
         try:
-            pct = (epiccurrent/epiccomplete)*100
+            pct = ((epiccurrent*100)/epiccomplete)
         except:
             pct = 0
 
@@ -33,13 +36,20 @@ class epic (object):
     def refticket(self):
         return (self.__epicticket)
 
+    def ticketcount(self):
+        return len (self.__tickets)
+
     def text(self):
         result = list()
 
-        result.append("Epic: " + self.__epicticket + "\n") 
+        epicstr = str.format("\nEpic: {}    Tickets: {}    Pct. Comp: {}    Summary: {}", 
+                             self.__epicticket, len(self.__tickets), 
+                             self.percentcomplete(), self.__summary)
+
+        result.append(epicstr)
         
-#        for tkt in self.__tickets:
-#            result.append("     ", tkt.text() + "\n")
+        for tkt in self.__tickets:
+            result.append("\n     " + tkt.text())
 
         return ''.join(result)
 
@@ -77,4 +87,23 @@ class project (object):
     def listofepics(self):
         return self.__listofepics
 
+    def ticketcount(self): 
+        result = 0;
+
+        for epic in self.__listofepics:
+            result += epic.ticketcount()
+
+        return result
+
+    def text (self):
+
+        result=list()
+        
+        projectsummary = str.format("\nProject Summary    Total Tickets: {}\n", self.ticketcount())
+        result.append(projectsummary)
+
+        for epic in self.__listofepics:
+            result.append(epic.text())
+
+        return ''.join(result)            
 
