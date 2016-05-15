@@ -64,7 +64,8 @@ class TestProjectXML(unittest.TestCase):
         listoftickets = self.projectFile.findalltickets();
         self.assertEquals(self.__numtkts1, len(listoftickets)) 
 
-        print listoftickets
+        # The following can be uncommented for visual verification of ticket data
+        #print listoftickets
 
 if __name__ == '__main__':
     unittest.main()

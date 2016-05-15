@@ -33,12 +33,20 @@ class status (object):
     _pctCodeReview = 50
     _pctWaitingForInput = 0
     _pctPendingApproval = 0
+    
+    #Dictionary used to convert a valid status value to its corresponding percent
+    #percent complete value.
 
-    _statustopc = dict (_open = _pctOpen, _developerTest = _pctDeveloperTest,
-                        _inProgress = _pctInProgress, resolved = _pctResolved,
-                        _reopened = _pctReopened, _closed = _pctClosed,
-                        _productBacklog = _pctProductBacklog, _codeReview = _pctCodeReview,
-                        _waitingForInput = _pctWaitingForInput, _pendingApproval = _pctPendingApproval)
+    _percentcomplete = {_open:_pctOpen,
+                        _developerTest:_pctDeveloperTest,
+                        _inProgress:_pctInProgress, 
+                        _resolved:_pctResolved,
+                        _reopened:_pctReopened, 
+                        _closed:_pctClosed,
+                        _productBacklog:_pctProductBacklog, 
+                        _codeReview:_pctCodeReview,
+                        _waitingForInput:_pctWaitingForInput, 
+                        _pendingApproval:_pctPendingApproval}
 
 class tags (object):
     """Contains tag constants used by the status jira package"""
