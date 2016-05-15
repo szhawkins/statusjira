@@ -5,10 +5,11 @@ from statusjira import appglobal as AG
 class ticket (object):
     """Class to contain the elements of a single Jira ticket"""
 
-    def __init__(self, Number, Summary, Status, secondsplanned, 
+    def __init__(self, Number, Type, Summary, Status, secondsplanned, 
                        secondsworked, secondsremain, EpicTicket):
 
         self.__ticketNumber = Number             # Text (e.g. RWS-1234)
+        self.__ticketType = Type                 # Integer
         self.__ticketSummary = Summary           # Text
         self.__ticketStatus = Status             # Integer 
         self.__ticketSecPlanned = secondsplanned # Integer 
@@ -36,6 +37,9 @@ class ticket (object):
 
     def epicTicket(self):
         return (self.__ticketEpicTicket)
+
+    def type (self): 
+        return (self.__ticketType)
 
     def percentComplete(self):
         #Use the dict defined in AG.status._percentcomplete to convert

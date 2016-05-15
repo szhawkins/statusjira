@@ -36,7 +36,6 @@ class status (object):
     
     #Dictionary used to convert a valid status value to its corresponding percent
     #percent complete value.
-
     _percentcomplete = {_open:_pctOpen,
                         _developerTest:_pctDeveloperTest,
                         _inProgress:_pctInProgress, 
@@ -63,4 +62,32 @@ class tags (object):
     _customfieldname="customfieldname"                      #Tag name
     _customfieldvalue="customfieldvalues/customfieldvalue"  #Tag name
     _epiclink="Epic Link"                                   #Tag value
+
+class type (object):
+    """Contains ticket type constants"""
+
+    #Ticket type ID's
+    _unknown = -1
+    _bug = 1
+    _sccbreq = 10000
+    _archdesign = 10202
+    _analysis = 22
+    _task = 3
+    _subtask = 5
+    _epic = 6
+    _story = 7
+
+    #Mapping of ticket type ID's to ticket type names
+    _name = {_unknown, 'Unknown',
+            _bug, 'Bug',
+            _sccbreq, 'SCCB Request',
+            _archdesign, 'Architecture Design',
+            _analysis, 'Analysis',
+            _task, 'Task',
+            _subtask, 'Sub-Task',
+            _epic, 'Epic',
+            _story, 'Story'}
+
+
+
 

@@ -6,8 +6,9 @@ class TestJiraTicket(unittest.TestCase):
 
     def setUp(self):
         self.Number = 1234
+        self.Type = AG.type._story
         self.Summary = "Summary"
-        self.Status = 1
+        self.Status = AG.status._open
         self.secondsplanned = 1000
         self.secondsworked = 500
         self.secondsremain = 3456
@@ -15,11 +16,12 @@ class TestJiraTicket(unittest.TestCase):
 
     def test_createobj(self):
 
-        ticket = jt.ticket (self.Number, self.Summary, self.Status, 
+        ticket = jt.ticket (self.Number, self.Type, self.Summary, self.Status, 
                                     self.secondsplanned, self.secondsworked, 
                                     self.secondsremain, self.EpicTicket)
 
         self.assertEqual (self.Number, ticket.number())
+        self.assertEqual (self.Type, ticket.type())
         self.assertEqual (self.Summary, ticket.summary())
         self.assertEqual (self.Status,  ticket.status())
         self.assertEqual (self.secondsplanned, ticket.secondsplanned())
@@ -42,7 +44,7 @@ class TestJiraTicket(unittest.TestCase):
                     (AG.status._pendingApproval, 0)] #  0% Complete
 
         for record in testdata:
-            ticket = jt.ticket (self.Number, self.Summary, record[0], 
+            ticket = jt.ticket (self.Number, self.Type, self.Summary, record[0], 
                                         self.secondsplanned, self.secondsworked, 
                                         self.secondsremain, self.EpicTicket)
 

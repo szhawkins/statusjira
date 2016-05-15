@@ -7,6 +7,8 @@ class TestProjectXML(unittest.TestCase):
     def setUp(self):
         self.__testFile1 = "test/JiraProjectTestData.xml"
         self.__numtkts1  = 3
+        self.__testFile2 = "test/JiraProjectTestDataLarge.xml"
+        self.__numtkts2  = 368
 
         self.projectFile = prj.file()
 
@@ -60,12 +62,13 @@ class TestProjectXML(unittest.TestCase):
 
 
     def test_findalltickets(self):        
-        self.projectFile.load (self.__testFile1)       #Load a project file
+        self.projectFile.load (self.__testFile2)       #Load a project file
         listoftickets = self.projectFile.findalltickets();
-        self.assertEquals(self.__numtkts1, len(listoftickets)) 
+        self.assertEquals(self.__numtkts2, len(listoftickets)) 
 
         # The following can be uncommented for visual verification of ticket data
-        #print listoftickets
+        for ticket in listoftickets:
+            print ticket, "\n"
 
 if __name__ == '__main__':
     unittest.main()
