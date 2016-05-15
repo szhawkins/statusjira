@@ -71,10 +71,8 @@ class file (object):
         epiclink = "None"
 
         for fieldelement in ticketelement.findall(".//" + AG.tags._customfield):
-            nameelement = fieldelement.find ("./" + AG.tags._customfieldname)
-
-            FIXTHENEXTLINE
-            valueelement = fieldelement.find ("./" + "customfieldvalues/customfieldvalue")
+            nameelement = fieldelement.find (AG.tags._customfieldname)
+            valueelement = fieldelement.find (AG.tags._customfieldvalue)
 
             if (nameelement != None)  and (valueelement != None):
                 if (nameelement.text == fieldname):

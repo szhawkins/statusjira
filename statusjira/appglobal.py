@@ -22,6 +22,7 @@ class status (object):
               _reopened, _closed, _productBacklog, _codeReview, 
               _waitingForInput, _pendingApproval]
 
+    #Percent complete values that correspond to each status value above
     _pctOpen = 0
     _pctDeveloperTest = 50
     _pctInProgress = 25
@@ -32,6 +33,12 @@ class status (object):
     _pctCodeReview = 50
     _pctWaitingForInput = 0
     _pctPendingApproval = 0
+
+    _statustopc = dict (_open = _pctOpen, _developerTest = _pctDeveloperTest,
+                        _inProgress = _pctInProgress, resolved = _pctResolved,
+                        _reopened = _pctReopened, _closed = _pctClosed,
+                        _productBacklog = _pctProductBacklog, _codeReview = _pctCodeReview,
+                        _waitingForInput = _pctWaitingForInput, _pendingApproval = _pctPendingApproval)
 
 class tags (object):
     """Contains tag constants used by the status jira package"""
@@ -44,8 +51,8 @@ class tags (object):
     _secondsremain="timeestimate"
 
     #Tag information to extract custom data
-    _customfield="customfield"
-    _customfieldname="customfieldname"    #Tag name
-    _customfieldvalue="customfieldvalue"  #Tag name
-    _epiclink="Epic Link"                 #Tag value
+    _customfield="customfield"                              #Tag name
+    _customfieldname="customfieldname"                      #Tag name
+    _customfieldvalue="customfieldvalues/customfieldvalue"  #Tag name
+    _epiclink="Epic Link"                                   #Tag value
 
