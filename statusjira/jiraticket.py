@@ -34,9 +34,9 @@ class ticket (object):
 
         self.__ticketNumber = Number         # Text (e.g. RWS-1234)
         self.__ticketSummary = Summary       # Text
-        self.__ticketStatus = Status         # Integer
-        self.__ticketEstHrs = EstHrs         # Integer
-        self.__ticketWorkHrs = WorkHrs       # Integer
+        self.__ticketStatus = Status         # Integer -->Change to sec_planned
+        self.__ticketEstHrs = EstHrs         # Integer -->Change to sec_worked
+        self.__ticketWorkHrs = WorkHrs       # Integer -->Change to sec_remain
         self.__ticketHrsLeft = HrsLeft       # Integer
         self.__ticketEpicTicket = EpicTicket # Text
 

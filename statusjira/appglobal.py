@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 class status (object):
-    """Constants used by the statusjira package"""
+    """Contains status onstants used by the statusjira package"""
 
     #Valid ticket status values
 
@@ -33,4 +33,19 @@ class status (object):
     _pctWaitingForInput = 0
     _pctPendingApproval = 0
 
+class tags (object):
+    """Contains tag constants used by the status jira package"""
+
+    #Following are tag names that are referenced in the applicaton
+
+    #Tag names used to extract duration data    
+    _secondsplanned="timeoriginalestimate"
+    _secondsworked="timespent"
+    _secondsremain="timeestimate"
+
+    #Tag information to extract custom data
+    _customfield="customfield"
+    _customfieldname="customfieldname"    #Tag name
+    _customfieldvalue="customfieldvalue"  #Tag name
+    _epiclink="Epic Link"                 #Tag value
 

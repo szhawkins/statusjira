@@ -1,6 +1,6 @@
 import unittest
 from statusjira import projectxml as prj
-from statusjira import jiraticket as jt
+from statusjira import appglobal as AG
 
 class TestProjectXML(unittest.TestCase):
 
@@ -41,7 +41,22 @@ class TestProjectXML(unittest.TestCase):
         self.projectFile.load (self.__testFile1)      
         tkt = self.projectFile.findfirstticket()
         ticketstatus = self.projectFile.findticketstatus(tkt)
-        self.assertNotEqual(jt.const._unknown, ticketstatus)
+        self.assertNotEqual(AG.status._unknown, ticketstatus)
+
+    def test_findduration(self):
+        self.projectFile.load (self.__testFile1)      
+        tkt = self.projectFile.findfirstticket()
+        secondsplanned = self.projectFile.findduration(tkt, AG.tags._secondsplanned)
+        self.assertNotEqual(None, secondsplanned)
+
+        secondsplanned = self.projectFile.findduration(tkt, "invalid")
+        self.assertEqual (0, secondsplanned)
+
+    def test_findcustomfield(self):
+        self.projectFile.load (self.__testFile1)      
+        tkt = self.projectFile.findfirstticket()
+        epicfield = self.projectFile.findcustomfield(tkt, AG.tags._epiclink)
+        self.assertNotEqual(None, epicfield)
 
 
     def test_findalltickets(self):        

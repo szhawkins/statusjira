@@ -48,9 +48,40 @@ class file (object):
             status_int = AG.status._unknown
 
         if (not status_int in AG.status._valid):
-            status_int = AG.const_unknown
+            status_int = AG.status._unknown
 
         return status_int
+
+    def findduration(self, ticketelement, durationattribute):
+        duration_element = ticketelement.find(durationattribute)
+        duration_int = 0
+
+        if (not None == duration_element):
+            duration_text = duration_element.get("seconds")
+
+            try: 
+                duration_int = int (duration_text)
+            except:
+                duration_int = 0
+
+        return duration_int            
+
+    def findcustomfield(self, ticketelement, fieldname):
+
+        epiclink = "None"
+
+        for fieldelement in ticketelement.findall(".//" + AG.tags._customfield):
+            nameelement = fieldelement.find ("./" + AG.tags._customfieldname)
+
+            FIXTHENEXTLINE
+            valueelement = fieldelement.find ("./" + "customfieldvalues/customfieldvalue")
+
+            if (nameelement != None)  and (valueelement != None):
+                if (nameelement.text == fieldname):
+                    epiclink = valueelement.text
+
+        return epiclink
+
 
     def findalltickets (self):
         alltickets = list()             #alltickets is returned by this operation
@@ -58,16 +89,16 @@ class file (object):
 
         for tktelement in root.findall("./channel/item"):
 
-            tktNumber = self.findticketnumber(tktelement)    # Text (e.g. RWS-1234)
-            tktSummary = self.findticketsummary(tktelement)  # Text
-            tktStatus = self.findticketstatus(tktelement)    # Integer
-            tktEstHrs =  0             # Integer
-            tktWorkHrs = 0             # Integer
-            tktHrsLeft = 0             # Integer
-            tktEpicRef = "tktEpicRef"  # Text (e.g. RWS-7890)
+            tktNumber = self.findticketnumber(tktelement)       # Text (e.g. RWS-1234)
+            tktSummary = self.findticketsummary(tktelement)     # Text
+            tktStatus = self.findticketstatus(tktelement)       # Integer
+            tktsecplanned = self.findduration(tktelement, AG.tags._secondsplanned) # Integer
+            tktsecworked = self.findduration(tktelement, AG.tags._secondsworked)   # Integer
+            tktsecremain = self.findduration(tktelement, AG.tags._secondsremain)   # Integer
+            tktEpicRef = self.findcustomfield(tktelement, AG.tags._epiclink)       # Text (e.g. RWS-7890)
 
             alltickets.append ((tktNumber, tktSummary, tktStatus,
-                               tktEstHrs, tktWorkHrs, tktHrsLeft,
+                               tktsecplanned, tktsecworked, tktsecremain,
                                tktEpicRef))
 
         return alltickets
