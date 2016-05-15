@@ -34,6 +34,15 @@ class file (object):
         number_text = number_element.text       
         return number_text
 
+    def findtickettype(self, ticketelement):
+        try:
+            type_element = ticketelement.find("type")
+            type_text = type_element.get ("id")
+            type_int = int (type_text)
+        except:             
+            type_int = AG.type._unknown
+        return type_int
+
     def findticketsummary(self, ticketelement):
         summary_element = ticketelement.find("summary")
         summary_text = summary_element.text       
@@ -87,15 +96,16 @@ class file (object):
 
         for tktelement in root.findall("./channel/item"):
 
-            tktNumber = self.findticketnumber(tktelement)       # Text (e.g. RWS-1234)
-            tktSummary = self.findticketsummary(tktelement)     # Text
-            tktStatus = self.findticketstatus(tktelement)       # Integer
+            tktNumber = self.findticketnumber(tktelement)                          # Text (e.g. RWS-1234)
+            tktType = self.findtickettype(tktelement)                              # Integer (Type ID)
+            tktSummary = self.findticketsummary(tktelement)                        # Text
+            tktStatus = self.findticketstatus(tktelement)                          # Integer
             tktsecplanned = self.findduration(tktelement, AG.tags._secondsplanned) # Integer
             tktsecworked = self.findduration(tktelement, AG.tags._secondsworked)   # Integer
             tktsecremain = self.findduration(tktelement, AG.tags._secondsremain)   # Integer
             tktEpicRef = self.findcustomfield(tktelement, AG.tags._epiclink)       # Text (e.g. RWS-7890)
 
-            alltickets.append ((tktNumber, tktSummary, tktStatus,
+            alltickets.append ((tktNumber, tktType, tktSummary, tktStatus,
                                tktsecplanned, tktsecworked, tktsecremain,
                                tktEpicRef))
 

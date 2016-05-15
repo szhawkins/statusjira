@@ -33,6 +33,12 @@ class TestProjectXML(unittest.TestCase):
         ticketnumber = self.projectFile.findticketnumber(tkt)
         self.assertTrue(ticketnumber) #Verify that the ticket number string is not empty
 
+    def test_findticketype(self):
+        self.projectFile.load (self.__testFile1)      
+        tkt = self.projectFile.findfirstticket()
+        tickettype = self.projectFile.findtickettype(tkt)
+        self.assertNotEqual(tickettype, AG.type._unknown) #Verify that the ticket number string is not empty
+
     def test_findticketsummary(self):
         self.projectFile.load (self.__testFile1)      
         tkt = self.projectFile.findfirstticket()
@@ -67,8 +73,8 @@ class TestProjectXML(unittest.TestCase):
         self.assertEquals(self.__numtkts2, len(listoftickets)) 
 
         # The following can be uncommented for visual verification of ticket data
-        for ticket in listoftickets:
-            print ticket, "\n"
+        #for ticket in listoftickets:
+        #    print ticket, "\n"
 
 if __name__ == '__main__':
     unittest.main()
