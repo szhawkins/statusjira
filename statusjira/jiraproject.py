@@ -53,6 +53,20 @@ class epic (object):
 
         return ''.join(result)
 
+    def csv(self):
+        result = list()
+
+        epicstr = str.format("\"Epic: {}\",\"Tickets: {}\",\" \",\" \",\"{}%\",\"Summary: {}\"\n",
+                             self.__epicticket, len(self.__tickets), 
+                             self.percentcomplete(), self.__summary)
+                              
+        result.append (epicstr)
+
+        for tkt in self.__tickets:
+            result.append("\" \"," + tkt.csv() + "\n")
+
+        return ''.join(result)
+
 class project (object):
     
     def __init__(self):
@@ -106,4 +120,13 @@ class project (object):
             result.append(epic.text())
 
         return ''.join(result)            
+
+    def csv (self):
+
+        result = list()
+
+        for epic in self.__listofepics:
+            result.append(epic.csv())
+
+        return ''.join(result)
 

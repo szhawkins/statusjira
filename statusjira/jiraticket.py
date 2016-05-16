@@ -57,4 +57,11 @@ class ticket (object):
                            self.number(), typetext, statustext, pcttext, self.summary())
 
 
+    def csv(self):
+        typetext = AG.type._name.get(self.__ticketType, "Unknown")
+        statustext = AG.status._text.get(self.__ticketStatus, "Unknown")
+        pcttext = str(self.percentComplete())
+
+        return str.format ("\"{}\",\"{}\",\"{}\",\"{}%\",\"{}\"", 
+                           self.number(), typetext, statustext, pcttext, self.summary())
 
