@@ -1,0 +1,43 @@
+#! /usr/bin/python3
+
+import sys
+import getopt
+from statusjira import jiraticket as JT
+from statusjira import jiraproject as JP
+from statusjira import projectxml as PX
+from statusjira import appglobal as AG
+
+
+
+if __name__ == '__main__':
+
+#    s = '--outfile fff --format csv  infile'
+    args = sys.argv 
+    args.pop(0)
+
+    outfile = str()
+    outfmt = str()
+
+    optlist, args = getopt.getopt(args, ' ', ['outfile=', 'format='])
+
+    for opt in optlist:
+        if (opt[0] == '--outfile'):
+            outfile=opt[1]
+        elif (opt[0] == '--format'):
+            outfmt = opt[1]
+            
+    projectfile = PX.file()
+    projectfile.load(args[0]) # input argument is the file to be processed
+
+    listoftickets = projectfile.findalltickets()
+
+    project = JP.project()
+    project.createepics(projectfile.findalltickets())
+
+        
+    print (project.csv())
+
+#    print ("optlist=", optlist)
+#    print ("args=", args)
+
+
