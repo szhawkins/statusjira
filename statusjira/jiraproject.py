@@ -13,8 +13,10 @@ class epic (object):
 
         for tktdata in listoftickets:
             if (tktdata[0] == self.__epicticket):
-                self.__summary = tktdata[2]
-            elif (tktdata[7] == epicticket):
+                self.__summary = tktdata[2]     # Update the summary for this epic
+            elif (tktdata[1] == AG.type._epic): 
+                pass                            # Don't add an epic to another epic
+            elif (tktdata[7] == epicticket):    # Add this ticket to the epic
                 ticketobj = JT.ticket(tktdata[0], tktdata[1], tktdata[2], tktdata[3],
                                       tktdata[4], tktdata[5], tktdata[6], tktdata[7])
                 self.__tickets.append(ticketobj)
