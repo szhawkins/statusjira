@@ -10,7 +10,7 @@ class status (object):
     _developerTest = 10006   #Verified in Jira   
     _inProgress = 3          #Verified in Jira
     _resolved = 5            #Verified in Jira
-    _reopened = 992          # -- Not Verified --
+    _reopened = 4            #Verified in Jira   
     _closed = 6              #Verified in Jira
     _productBacklog = 991    # -- Not Verified --
     _codeReview = 10004      #Verified in Jira
