@@ -14,13 +14,14 @@ class status (object):
     _closed = 6              #Verified in Jira
     _productBacklog = 991    # -- Not Verified --
     _codeReview = 10004      #Verified in Jira
+    _approved = 10015        #Verified in Jira
     _waitingForInput = 10822 #Verified in Jira
     _pendingApproval = 10021 #Verified in Jira
 
     # List used to determine if a given status value is valid
     _valid = [_unknown, _open, _developerTest, _inProgress, _resolved, 
               _reopened, _closed, _productBacklog, _codeReview, 
-              _waitingForInput, _pendingApproval]
+              _approved, _waitingForInput, _pendingApproval]
 
     #Percent complete values that correspond to each status value above
     _pctOpen = 0
@@ -31,6 +32,7 @@ class status (object):
     _pctClosed = 100
     _pctProductBacklog = 0
     _pctCodeReview = 50
+    _pctApproved = 100
     _pctWaitingForInput = 0
     _pctPendingApproval = 0
     
@@ -44,6 +46,7 @@ class status (object):
                         _closed:_pctClosed,
                         _productBacklog:_pctProductBacklog, 
                         _codeReview:_pctCodeReview,
+                        _approved:_pctApproved,
                         _waitingForInput:_pctWaitingForInput, 
                         _pendingApproval:_pctPendingApproval}
 
@@ -51,7 +54,7 @@ class status (object):
     _text = {_unknown:'unknown', _open:'Open', _developerTest:'Developer Test',
              _inProgress:'In Progress', _resolved:'Resolved', _reopened:'Re-Opened', 
              _closed:'Closed', _productBacklog:'Product Backlog', _codeReview:'Code Review',
-             _waitingForInput:'Waiting For Input', _pendingApproval:'PendingApproval'}
+             _approved:'Approved', _waitingForInput:'Waiting For Input', _pendingApproval:'PendingApproval'}
 
 class tags (object):
     """Contains tag constants used by the status jira package"""
