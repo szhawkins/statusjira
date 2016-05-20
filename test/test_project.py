@@ -13,7 +13,7 @@ class TestJiraTicket(unittest.TestCase):
         self.__numtkts2  = 455
 
         self.__projectFile = PX.file()
-        self.__projectFile.load (self.__testFile2)
+        self.__projectFile.load (self.__testFile1)
         self.__listoftickets=self.__projectFile.findalltickets();
 
     def test_findallepics(self):

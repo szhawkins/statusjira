@@ -89,6 +89,18 @@ class file (object):
 
         return epiclink
 
+    def findepicref(self, ticketelement):
+        tktepic = self.findcustomfield(ticketelement, AG.tags._epiclink)
+        tkttype = self.findtickettype(ticketelement)
+
+        if (tkttype == AG.type._sccbreq):
+            result = "SCCB Request"
+        else:
+            result = tktepic
+
+        return result            
+       
+
 
     def findalltickets (self):
         alltickets = list()             #alltickets is returned by this operation
@@ -103,7 +115,7 @@ class file (object):
             tktsecplanned = self.findduration(tktelement, AG.tags._secondsplanned) # Integer
             tktsecworked = self.findduration(tktelement, AG.tags._secondsworked)   # Integer
             tktsecremain = self.findduration(tktelement, AG.tags._secondsremain)   # Integer
-            tktEpicRef = self.findcustomfield(tktelement, AG.tags._epiclink)       # Text (e.g. RWS-7890)
+            tktEpicRef = self.findepicref(tktelement)                              # Text (e.g. RWS-7890)
 
             alltickets.append ((tktNumber, tktType, tktSummary, tktStatus,
                                tktsecplanned, tktsecworked, tktsecremain,
