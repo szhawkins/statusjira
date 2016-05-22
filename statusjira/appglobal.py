@@ -75,6 +75,8 @@ class tags (object):
     _customfieldname="customfieldname"                      #Tag name
     _customfieldvalue="customfieldvalues/customfieldvalue"  #Tag name
     _epiclink="Epic Link"                                   #Tag value
+    _teamlink="Scrum Team"                                  #Tag Value
+    _assigneelink="assignee"                                #Tag Value
 
 class type (object):
     """Contains ticket type constants"""

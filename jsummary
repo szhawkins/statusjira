@@ -3,6 +3,7 @@
 import sys
 from statusjira import jiraproject as JP
 from statusjira import projectxml as PX
+from statusjira import jiraticket as JT
 from statusjira import appglobal as AG
 
 
@@ -34,7 +35,14 @@ if __name__ == '__main__':
     elif (AG.ARGS.outfmthtml()):
         print (project.html())
     else:
-        print (project)
+        
+        jiraticket = JT.ticket(0, 0, "", 0, 0, 0, 0, "", "")
+
+        print ("Ticket, Epic, Team, Type, Status, Pct, Summary")
+
+        for tktdata in listoftickets:
+            jiraticket.reinit(tktdata)
+            print (jiraticket)
 
 
 

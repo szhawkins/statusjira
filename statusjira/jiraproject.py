@@ -20,7 +20,8 @@ class epic (object):
                 pass
             elif (tktdata[7] == epicticket):       # Add this ticket to the epic
                 ticketobj = JT.ticket(tktdata[0], tktdata[1], tktdata[2], tktdata[3],
-                                      tktdata[4], tktdata[5], tktdata[6], tktdata[7])
+                                      tktdata[4], tktdata[5], tktdata[6], tktdata[7],
+                                      tktdata[8])
                 self.__tickets.append(ticketobj)
 
     def percentcomplete(self):
@@ -81,6 +82,7 @@ class project (object):
         # Note: List of tickets is a list of tuples of the form:
         # str TicketNumber, int TicketType,    str TicketSummary, int TicketStatus
         # int SecondsPlan,  int SecnodsWorked, int SecondsRemain, str EpicReference
+        # str ScrumTeam
     
         setofepictickets = set()
 
@@ -88,6 +90,19 @@ class project (object):
             setofepictickets.add(ticket[7])
 
         self.__listofepictickets = list(setofepictickets)
+
+    def findallteams (self, listoftickets):
+        # Note: List of tickets is a list of tuples of the form:
+        # str TicketNumber, int TicketType,    str TicketSummary, int TicketStatus
+        # int SecondsPlan,  int SecnodsWorked, int SecondsRemain, str EpicReference
+        # str ScrumTeam
+
+        setofscrumteams = set()
+
+        for ticket in listoftickets:
+            setofscrumteams.add(ticket[8])
+
+        self.__listofscrumteams = list(setofscrumteams)
 
     def createepics(self, listoftickets):
 
@@ -101,6 +116,9 @@ class project (object):
 
     def listofepictickets(self):
         return self.__listofepictickets
+
+    def listofscrumteams(self):
+        return self.__listofscrumteams
 
     def listofepics(self):
         return self.__listofepics

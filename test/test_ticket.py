@@ -13,12 +13,13 @@ class TestJiraTicket(unittest.TestCase):
         self.secondsworked = 500
         self.secondsremain = 3456
         self.EpicTicket = "RWS-9999"
+        self.scrumteam = "Unit Test"
 
     def test_createobj(self):
 
         ticket = jt.ticket (self.Number, self.Type, self.Summary, self.Status, 
                                     self.secondsplanned, self.secondsworked, 
-                                    self.secondsremain, self.EpicTicket)
+                                    self.secondsremain, self.EpicTicket, self.scrumteam)
 
         self.assertEqual (self.Number, ticket.number())
         self.assertEqual (self.Type, ticket.type())
@@ -46,7 +47,8 @@ class TestJiraTicket(unittest.TestCase):
         for record in testdata:
             ticket = jt.ticket (self.Number, self.Type, self.Summary, record[0], 
                                         self.secondsplanned, self.secondsworked, 
-                                        self.secondsremain, self.EpicTicket)
+                                        self.secondsremain, self.EpicTicket,
+                                        self.scrumteam)
 
             self.assertEqual (record[1], ticket.percentComplete())       
 

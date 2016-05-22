@@ -41,7 +41,8 @@ class args (object):
             optlist, args = getopt.getopt(argv[1:], '-h', ['outfile=', 
                                                            'csv',
                                                            'html',
-                                                           'orderby=',
+                                                           'groupepics',
+                                                           'groupteams',
                                                            'help'])
         except getopt.GetoptError as err:
             self.__errortext = err.__str__()
@@ -54,11 +55,13 @@ class args (object):
             if (opt == '--outfile'):
                 self.__outputfile=val
             elif (opt == '--csv'):
-                self.__outputfmt = 'csv' # For lower case compare
+                self.__outputfmt = 'csv'  # For lower case compare
             elif (opt == '--html'):
                 self.__outputfmt = 'html' # For lower case compare
-            elif (opt == '--orderby'):
-                self.__orderby = val.lower()    # For lower case compare
+            elif (opt == '--groupepics'):
+                self.__groupby = 'epic'   # For lower case compare
+            elif (opt == '--groupteams'):
+                self.__groupby = 'team'
             elif opt in ("-h", "--help"):
                 print ()
                 print (self.helptext())
@@ -75,7 +78,7 @@ class args (object):
             print ("self.__inputfile: ", self.__inputfile)
             print ("self.__outputfile: ", self.__outputfile)
             print ("self.__outputfmt: ", self.__outputfmt)
-            print ("self.__orderby: ", self.__orderby)
+            print ("self.__groupby: ", self.__groupby)
 
         return True            
 
@@ -91,11 +94,11 @@ class args (object):
     def outfmthtml(self):
         return (self.__outputfmt == 'html')
 
-    def orderbyepic(self):
-        return (self.__orderby == 'epic')
+    def groupepics(self):
+        return (self.__groupby == 'epic')
 
-    def orderbygroup(self):
-        return (self.__orderby == 'group')
+    def groupteams(self):
+        return (self.__groupby == 'team')
 
     def errortext(self):
         return (self.__errortext)

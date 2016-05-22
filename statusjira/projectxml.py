@@ -100,6 +100,13 @@ class file (object):
 
         return result            
        
+    def findteamref(self, ticketelement):
+        tktteam = self.findcustomfield(ticketelement, AG.tags._teamlink)
+        return tktteam
+
+    def findassignee(self, ticketelement):
+        assignee = self.findcustomfield(ticketelement, AG.tags._assigneelink)
+        return assignee
 
 
     def findalltickets (self):
@@ -116,10 +123,12 @@ class file (object):
             tktsecworked = self.findduration(tktelement, AG.tags._secondsworked)   # Integer
             tktsecremain = self.findduration(tktelement, AG.tags._secondsremain)   # Integer
             tktEpicRef = self.findepicref(tktelement)                              # Text (e.g. RWS-7890)
+            tktScrumTeam=self.findteamref(tktelement)                              # Text ("Rave Ravens)
+            tktAssignee=self.findassignee(tktelement)                              # Text ("John Smith")
 
-            alltickets.append ((tktNumber, tktType, tktSummary, tktStatus,
-                               tktsecplanned, tktsecworked, tktsecremain,
-                               tktEpicRef))
+            alltickets.append ((tktNumber    , tktType     , tktSummary  , tktStatus , 
+                                tktsecplanned, tktsecworked, tktsecremain, tktEpicRef, 
+                                tktScrumTeam , tktAssignee))
 
         return alltickets
 

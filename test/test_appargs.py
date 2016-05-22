@@ -49,17 +49,17 @@ class TestArgs(unittest.TestCase):
         self.assertFalse(self._args.parse(self._argv, self._beverbose))
         self.assertIsNotNone(self._args.errortext())
 
-    def test_opt_orderby(self):
-        self._argv.append('--orderby=epic')
+    def test_opt_grouping(self):
+        self._argv.append('--groupepics')
         self._argv.append('self._infilename')
         self.assertTrue(self._args.parse(self._argv, self._beverbose))
         self.assertIsNone(self._args.errortext())
-        self.assertTrue (self._args.orderbyepic())
+        self.assertTrue (self._args.groupepics())
 
-        self._argv[1] = '--orderby=group'
+        self._argv[1] = '--groupteams'
         self.assertTrue(self._args.parse(self._argv, self._beverbose))
         self.assertIsNone(self._args.errortext())
-        self.assertTrue (self._args.orderbygroup())
+        self.assertTrue (self._args.groupteams())
 
     def test_helptext(self):
         self._argv.append(self._infilename)

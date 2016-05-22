@@ -26,6 +26,16 @@ class TestJiraTicket(unittest.TestCase):
         project.findallepics(self.__listoftickets)
         self.assertNotEqual(0, len(project.listofepictickets()))
 
+    def test_findallteams(self):
+
+        #make sure that there are tickets in the list
+        self.assertNotEqual(0, len(self.__listoftickets))
+
+        #make sure that there are scrum teams found in the the project
+        project = JP.project()
+        project.findallteams(self.__listoftickets)
+        self.assertNotEqual(0, len(project.listofscrumteams()))
+
     def test_createepics(self):
         #make sure that there are tickets in the list
         self.assertNotEqual(0, len(self.__listoftickets))
