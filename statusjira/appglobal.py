@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 
+from statusjira import args as ARGS
+
 class status (object):
     """Contains status onstants used by the statusjira package"""
 
     #Valid ticket status values
 
-    _unknown = -1            #Status value is not available
+    _unknown = -1            #Status value is not defined
     _open = 1                #Verified in Jira
     _developerTest = 10006   #Verified in Jira   
     _inProgress = 3          #Verified in Jira
