@@ -2,6 +2,7 @@
 
 from statusjira import args as ARGS
 
+
 class status (object):
     """Contains status onstants used by the statusjira package"""
 

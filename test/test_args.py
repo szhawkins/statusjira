@@ -22,7 +22,6 @@ class TestArgs(unittest.TestCase):
         self.assertEqual (self._outfilename, self._args.outfilename())
 
     def test_opt_outfmt(self):
-        print '*** test_opt_outfmt***'
         self._argv.append ('--csv')
         self._argv.append (self._infilename)
         self.assertTrue(self._args.parse(self._argv, self._beverbose))

@@ -34,7 +34,7 @@ class args (object):
             return False
 
         if (verbose):
-            print "\nargs: ", args, "     optlist: ", optlist
+            print ("\nargs: ", args, "     optlist: ", optlist)
 
         if not args:
             self.__errortext = 'The input file must be specified'
@@ -53,11 +53,11 @@ class args (object):
                 self.__orderby = val.lower()    # For lower case compare
 
         if (verbose):
-            print "PROGNAME: ", type(self).PROGNAME
-            print "self.__inputfile: ", self.__inputfile
-            print "self.__outputfile: ", self.__outputfile
-            print "self.__outputfmt: ", self.__outputfmt
-            print "self.__orderby: ", self.__orderby
+            print ("PROGNAME: ", type(self).PROGNAME)
+            print ("self.__inputfile: ", self.__inputfile)
+            print ("self.__outputfile: ", self.__outputfile)
+            print ("self.__outputfmt: ", self.__outputfmt)
+            print ("self.__orderby: ", self.__orderby)
 
         return True            
 
