@@ -14,13 +14,17 @@ class TestJiraTicket(unittest.TestCase):
         self.secondsremain = 3456
         self.EpicTicket = "RWS-9999"
         self.scrumteam = "Unit Test"
+        self.assignee  = "Unit Tester"
 
     def test_createobj(self):
 
-        ticket = jt.ticket (self.Number, self.Type, self.Summary, self.Status, 
-                                    self.secondsplanned, self.secondsworked, 
-                                    self.secondsremain, self.EpicTicket, self.scrumteam)
+        tktdata = (self.Number       , self.Type          , self.Summary      , 
+                   self.Status       , self.secondsplanned, self.secondsworked, 
+                   self.secondsremain, self.EpicTicket    , self.scrumteam,
+                   self.assignee)
 
+        ticket = jt.ticket (tktdata)
+                
         self.assertEqual (self.Number, ticket.number())
         self.assertEqual (self.Type, ticket.type())
         self.assertEqual (self.Summary, ticket.summary())
@@ -45,10 +49,12 @@ class TestJiraTicket(unittest.TestCase):
                     (AG.status._pendingApproval, 0)] #  0% Complete
 
         for record in testdata:
-            ticket = jt.ticket (self.Number, self.Type, self.Summary, record[0], 
-                                        self.secondsplanned, self.secondsworked, 
-                                        self.secondsremain, self.EpicTicket,
-                                        self.scrumteam)
+            tktdata = (self.Number       , self.Type          , self.Summary      , 
+                       record[0]         , self.secondsplanned, self.secondsworked, 
+                       self.secondsremain, self.EpicTicket    , self.scrumteam    , 
+                       self.assignee)
+
+            ticket = jt.ticket(tktdata)
 
             self.assertEqual (record[1], ticket.percentComplete())       
 

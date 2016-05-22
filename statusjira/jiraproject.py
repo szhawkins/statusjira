@@ -19,9 +19,7 @@ class epic (object):
             elif (tktdata[1] == AG.type._subtask): # Don't add subtasks
                 pass
             elif (tktdata[7] == epicticket):       # Add this ticket to the epic
-                ticketobj = JT.ticket(tktdata[0], tktdata[1], tktdata[2], tktdata[3],
-                                      tktdata[4], tktdata[5], tktdata[6], tktdata[7],
-                                      tktdata[8])
+                ticketobj = JT.ticket(tktdata)
                 self.__tickets.append(ticketobj)
 
     def percentcomplete(self):

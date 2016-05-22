@@ -36,7 +36,7 @@ if __name__ == '__main__':
         print (project.html())
     else:
         
-        jiraticket = JT.ticket(0, 0, "", 0, 0, 0, 0, "", "")
+        jiraticket = JT.ticket(listoftickets[0])
 
         print ("Ticket, Epic, Team, Type, Status, Pct, Summary")
 

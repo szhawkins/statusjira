@@ -5,18 +5,23 @@ from statusjira import appglobal as AG
 class ticket (object):
     """Class to contain the elements of a single Jira ticket"""
 
-    def __init__(self, Number, Type, Summary, Status, secondsplanned, 
-                       secondsworked, secondsremain, EpicTicket, scrumteam):
+    def __init__(self, tktdata):
+        # Note: ticketdata is provided in a tuple formatted as follows:
+        # [0] str TicketNumber , [1] int TicketType   , [2] str TicketSummary, 
+        # [3] int TicketStatus , [4] int SecondsPlan  , [5] int SecnodsWorked,
+        # [6] int SecondsRemain, [7] str EpicReference, [8]str ScrumTeam,    
+        # [9] str TicketAssignee
 
-        self.__ticketNumber = Number             # Text (e.g. RWS-1234)
-        self.__ticketType = Type                 # Integer
-        self.__ticketSummary = Summary           # Text
-        self.__ticketStatus = Status             # Integer 
-        self.__ticketSecPlanned = secondsplanned # Integer 
-        self.__ticketSecWorked = secondsworked   # Integer 
-        self.__ticketSecRemain = secondsremain   # Integer 
-        self.__ticketEpicTicket = EpicTicket     # Text
-        self.__ticketScrumTeam = scrumteam       # Text
+        self.__ticketNumber     = tktdata[0] # Text (e.g. RWS-1234)
+        self.__ticketType       = tktdata[1] # Integer
+        self.__ticketSummary    = tktdata[2] # Text
+        self.__ticketStatus     = tktdata[3] # Integer 
+        self.__ticketSecPlanned = tktdata[4] # Integer 
+        self.__ticketSecWorked  = tktdata[5] # Integer 
+        self.__ticketSecRemain  = tktdata[6] # Integer 
+        self.__ticketEpicTicket = tktdata[7] # Text
+        self.__ticketScrumTeam  = tktdata[8] # Text
+        self.__ticketAssignee   = tktdata[9] # Text
 
     def __str__(self):
         typetext = AG.type._name.get(self.__ticketType, "Unknown")
@@ -29,12 +34,7 @@ class ticket (object):
 
 
     def reinit (self, tktdata):
-        # Note: ticketdata is provided in a tuple formatted as follows:
-        # str TicketNumber, int TicketType,    str TicketSummary, int TicketStatus
-        # int SecondsPlan,  int SecnodsWorked, int SecondsRemain, str EpicReference
-        # str ScrumTeam
-       self.__init__(tktdata[0], tktdata[1], tktdata[2], tktdata[3], tktdata[4],
-                     tktdata[5], tktdata[6], tktdata[7], tktdata[8])
+       self.__init__(tktdata)
         
     def number (self):
         return (self.__ticketNumber)
