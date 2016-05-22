@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from statusjira import args as ARGS
+from statusjira import appargs as ARGS
 
 
 class status (object):
