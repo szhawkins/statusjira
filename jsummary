@@ -38,7 +38,7 @@ if __name__ == '__main__':
         
         jiraticket = JT.ticket(listoftickets[0])
 
-        print ("Ticket, Epic, Team, Type, Status, Pct, Summary")
+        print ("Ticket, Epic, Assignee, Team, Type, Status, Pct, Summary")
 
         for tktdata in listoftickets:
             jiraticket.reinit(tktdata)

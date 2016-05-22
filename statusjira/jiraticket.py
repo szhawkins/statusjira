@@ -27,10 +27,10 @@ class ticket (object):
         typetext = AG.type._name.get(self.__ticketType, "Unknown")
         statustext = AG.status._text.get(self.__ticketStatus, "Unknown")
         pcttext = str(self.percentComplete())
-        return str.format ("\"{}\",\"{}\",\"{}\",\"{}\",\"{}\",\"{}%\",\"{}\"", 
-                           self.number(), self.epicTicket(), self.scrumteam() , 
-                           typetext     , statustext       , pcttext          , 
-                           self.summary())
+        return str.format ("\"{}\",\"{}\",\"{}\",\"{}\",\"{}\",\"{}\",\"{}%\",\"{}\"", 
+                           self.number()   , self.epicTicket(), self.assignee(), 
+                           self.scrumteam(), typetext         , statustext     , 
+                           pcttext         , self.summary())
 
 
     def reinit (self, tktdata):
@@ -59,6 +59,9 @@ class ticket (object):
 
     def scrumteam(self):
         return (self.__ticketScrumTeam)
+
+    def assignee(self):
+        return (self.__ticketAssignee)
 
     def type (self): 
         return (self.__ticketType)

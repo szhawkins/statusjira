@@ -105,9 +105,9 @@ class file (object):
         return tktteam
 
     def findassignee(self, ticketelement):
-        assignee = self.findcustomfield(ticketelement, AG.tags._assigneelink)
-        return assignee
-
+        assignee_element = ticketelement.find("assignee")
+        assignee_text = assignee_element.text       
+        return assignee_text
 
     def findalltickets (self):
         alltickets = list()             #alltickets is returned by this operation
