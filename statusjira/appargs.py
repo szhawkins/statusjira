@@ -14,6 +14,19 @@ class args (object):
             self.parse(argv)
         else: 
             self.parse(sys.argv)
+    
+    def __str__(self):
+
+        if (self.__errortext):
+            errtxt = self.__errortext
+        else:
+            errtxt = str()
+
+        return "self.__inputfile:    " + self.__inputfile  + \
+               "\nself.__outputfile: " + self.__outputfile + \
+               "\nself.__outputfmt:  " + self.__outputfmt  + \
+               "\nself.__orderby:    " + self.__orderby    + \
+               "\nself.__errortext:  " + errtxt
 
     def parse (self, argv, verbose=False):
 
@@ -25,22 +38,17 @@ class args (object):
         self.__errortext= None    # If an error occurs, the text is stored here
 
         try: 
-            optlist, args = getopt.getopt(argv[1:], ' ', ['outfile=', 
-                                                          'csv',
-                                                          'html',
-                                                          'orderby='])
+            optlist, args = getopt.getopt(argv[1:], '-h', ['outfile=', 
+                                                           'csv',
+                                                           'html',
+                                                           'orderby=',
+                                                           'help'])
         except getopt.GetoptError as err:
-            self.__errortext = err
+            self.__errortext = err.__str__()
             return False
 
         if (verbose):
             print ("\nargs: ", args, "     optlist: ", optlist)
-
-        if not args:
-            self.__errortext = 'The input file must be specified'
-            return False
-        else:
-            self.__inputfile = args[0]
 
         for opt, val in optlist:
             if (opt == '--outfile'):
@@ -51,6 +59,16 @@ class args (object):
                 self.__outputfmt = 'html' # For lower case compare
             elif (opt == '--orderby'):
                 self.__orderby = val.lower()    # For lower case compare
+            elif opt in ("-h", "--help"):
+                print ()
+                print (self.helptext())
+                sys.exit()
+
+        if not args:
+            self.__errortext = 'The input file must be specified'
+            return False
+        else:
+            self.__inputfile = args[0]
 
         if (verbose):
             print ("PROGNAME: ", type(self).PROGNAME)
@@ -85,8 +103,8 @@ class args (object):
     def helptext(self):
         return "Usage: " + type(self).PROGNAME + " [OPTION]...  INPUT-FILE\n\n" + \
                "OPTIONS: \n" + \
-               "--outfile=FILE\tWrite the report to FILE\n" + \
-               "--csv\t\tFormat the ouptput as a .csv file\n" + \
-               "--html\t\tFormat the output as an HTML file\n" 
-
+               "--outfile=FILE\tWrite the report to FILE\n"    + \
+               "--csv\t\tFormat the ouptput as a .csv file\n"  + \
+               "--html\t\tFormat the output as an HTML file\n" + \
+               "--help, -h\tHelp\n"
 

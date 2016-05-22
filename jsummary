@@ -1,7 +1,6 @@
 #! /usr/bin/python3
 
 import sys
-import getopt
 from statusjira import jiraproject as JP
 from statusjira import projectxml as PX
 from statusjira import appglobal as AG
@@ -11,18 +10,31 @@ from statusjira import appglobal as AG
 if __name__ == '__main__':
 
             
-    print ('PROGNAME: ' , AG.args.PROGNAME)
+    #print (AG.ARGS)
+
+    # If erorrtext is "Not None" then there was a command line parsing error
+    # Display the error and help text then exit
+    if (AG.ARGS.errortext()):
+        print (AG.ARGS.errortext())
+        print ()
+        print (AG.ARGS.helptext())
+        sys.exit(2)
     
-#    projectfile = PX.file()
-#    projectfile.load(args[0]) # input argument is the file to be processed
+    # Input arguments are valid, proceed with processing the input file
+    projectfile = PX.file()
+    projectfile.load(AG.ARGS.infilename()) # input argument is the file to be processed
 
-#    listoftickets = projectfile.findalltickets()
+    listoftickets = projectfile.findalltickets()
 
-#    project = JP.project()
-#    project.createepics(projectfile.findalltickets())
+    project = JP.project()
+    project.createepics(projectfile.findalltickets())
 
-        
-#    print (project.csv())
+    if (AG.ARGS.outfmtcsv()):
+        print (project.csv())
+    elif (AG.ARGS.outfmthtml()):
+        print (project.html())
+    else:
+        print (project)
 
 
 

@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
-from statusjira import appargs as ARGS
+from statusjira import appargs 
 
+ARGS = appargs.args()
 
 class status (object):
     """Contains status onstants used by the statusjira package"""
