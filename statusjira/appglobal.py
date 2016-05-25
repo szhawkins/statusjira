@@ -16,7 +16,7 @@ class status (object):
     _resolved = 5            #Verified in Jira
     _reopened = 4            #Verified in Jira   
     _closed = 6              #Verified in Jira
-    _productBacklog = 991    # -- Not Verified --
+    _productBacklog = 10001  #Verified in Jira
     _codeReview = 10004      #Verified in Jira
     _approved = 10015        #Verified in Jira
     _waitingForInput = 10822 #Verified in Jira
