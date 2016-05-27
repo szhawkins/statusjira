@@ -61,6 +61,18 @@ class TestArgs(unittest.TestCase):
         self.assertIsNone(self._args.errortext())
         self.assertTrue (self._args.groupteams())
 
+    def test_opt_include_subtasks(self):
+
+        self._argv = ['ExecutableName', self._infilename]
+        self.assertTrue(self._args.parse(self._argv, self._beverbose))
+        self.assertFalse(self._args.include_subtasks())
+        self.assertIsNone(self._args.errortext())
+
+        self._argv = ['ExecutableName', '--include-subtasks', 'InputFile']
+        self.assertTrue(self._args.parse(self._argv, self._beverbose))
+        self.assertIsNone(self._args.errortext())
+        self.assertTrue(self._args.include_subtasks())
+
     def test_helptext(self):
         self._argv.append(self._infilename)
         self.assertTrue(self._args.parse(self._argv, self._beverbose))

@@ -31,11 +31,12 @@ class args (object):
     def parse (self, argv, verbose=False):
 
         type(self).PROGNAME=argv[0]
-        self.__inputfile = str()  # Path to input file
-        self.__outputfile = str() # Path to output file
-        self.__outputfmt = str()  # Output Format (text, csv, HTML, etc)
-        self.__orderby  = str()   # Orderby (Epic, Team, None, etc)
-        self.__errortext= None    # If an error occurs, the text is stored here
+        self.__inputfile = str()        # Path to input file
+        self.__outputfile = str()       # Path to output file
+        self.__outputfmt = str()        # Output Format (text, csv, HTML, etc)
+        self.__groupby  = str()         # Group By: (Epic, Team, None, etc)
+        self.__include_subtasks = False # Flag to enable subtasks in reports
+        self.__errortext= None          # If an error occurs, the text is stored here
 
         try: 
             optlist, args = getopt.getopt(argv[1:], '-h', ['outfile=', 
@@ -43,6 +44,7 @@ class args (object):
                                                            'html',
                                                            'groupepics',
                                                            'groupteams',
+                                                           'include-subtasks',
                                                            'help'])
         except getopt.GetoptError as err:
             self.__errortext = err.__str__()
@@ -62,6 +64,8 @@ class args (object):
                 self.__groupby = 'epic'   # For lower case compare
             elif (opt == '--groupteams'):
                 self.__groupby = 'team'
+            elif (opt == '--include-subtasks'):
+                self.__include_subtasks = True
             elif opt in ("-h", "--help"):
                 print ()
                 print (self.helptext())
@@ -79,6 +83,7 @@ class args (object):
             print ("self.__outputfile: ", self.__outputfile)
             print ("self.__outputfmt: ", self.__outputfmt)
             print ("self.__groupby: ", self.__groupby)
+            print ("self.__include-subtasks: ", self.__include_subtasks)
 
         return True            
 
@@ -102,6 +107,9 @@ class args (object):
 
     def errortext(self):
         return (self.__errortext)
+
+    def include_subtasks(self):
+        return (self.__include_subtasks)
 
     def helptext(self):
         return "Usage: " + type(self).PROGNAME + " [OPTION]...  INPUT-FILE\n\n" + \
