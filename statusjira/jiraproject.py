@@ -16,8 +16,6 @@ class epic (object):
                 self.__summary = tktdata[2]        # Update the summary for this epic
             elif (tktdata[1] == AG.type._epic): 
                 pass                               # Don't add an epic to another epic
-            elif (tktdata[1] == AG.type._subtask): # Don't add subtasks
-                pass
             elif (tktdata[7] == epicticket):       # Add this ticket to the epic
                 ticketobj = JT.ticket(tktdata)
                 self.__tickets.append(ticketobj)

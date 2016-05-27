@@ -112,10 +112,11 @@ class args (object):
         return (self.__include_subtasks)
 
     def helptext(self):
-        return "Usage: " + type(self).PROGNAME + " [OPTION]...  INPUT-FILE\n\n" + \
+        return "Usage: " + type(self).PROGNAME + " [OPTION]...  INPUT-FILE\n\n"     + \
                "OPTIONS: \n" + \
-               "--outfile=FILE\tWrite the report to FILE\n"    + \
-               "--csv\t\tFormat the ouptput as a .csv file\n"  + \
-               "--html\t\tFormat the output as an HTML file\n" + \
+               "--outfile=FILE\tWrite the report to FILE\n"                         + \
+               "--csv\t\tFormat the ouptput as a .csv file\n"                       + \
+               "--html\t\tFormat the output as an HTML file\n"                      + \
+               "--include-subtasks  Include Subtask tickets in the output report\n" + \
                "--help, -h\tHelp\n"
 

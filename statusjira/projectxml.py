@@ -126,9 +126,10 @@ class file (object):
             tktScrumTeam=self.findteamref(tktelement)                              # Text ("Rave Ravens)
             tktAssignee=self.findassignee(tktelement)                              # Text ("John Smith")
 
-            alltickets.append ((tktNumber    , tktType     , tktSummary  , tktStatus , 
-                                tktsecplanned, tktsecworked, tktsecremain, tktEpicRef, 
-                                tktScrumTeam , tktAssignee))
+            if ((tktType != AG.type._subtask) or (AG.ARGS.include_subtasks())):
+                alltickets.append ((tktNumber    , tktType     , tktSummary  , tktStatus , 
+                                    tktsecplanned, tktsecworked, tktsecremain, tktEpicRef, 
+                                    tktScrumTeam , tktAssignee))
 
         return alltickets
 
