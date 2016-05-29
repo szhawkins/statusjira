@@ -5,6 +5,7 @@ from statusjira import jiraproject as JP
 from statusjira import projectxml as PX
 from statusjira import jiraticket as JT
 from statusjira import appglobal as AG
+from tabulate import tabulate as TABLE
 
 
 
@@ -16,6 +17,7 @@ if __name__ == '__main__':
     # If erorrtext is "Not None" then there was a command line parsing error
     # Display the error and help text then exit
     if (AG.ARGS.errortext()):
+        print ()
         print (AG.ARGS.errortext())
         print ()
         print (AG.ARGS.helptext())
@@ -33,7 +35,11 @@ if __name__ == '__main__':
     if (AG.ARGS.outfmtcsv()):
         print (project.csv())
     elif (AG.ARGS.outfmthtml()):
-        print (project.html())
+        headers = ["Ticket", "Epic", "Assignee", "Team", "Type", "Status", "Pct", "Summary"]
+        print (TABLE (projectfile.findalltickets(True), headers, tablefmt="html"))
+    elif (AG.ARGS.outfmttxt()):
+        headers = ["Ticket", "Epic", "Assignee", "Team", "Type", "Status", "Pct", "Summary"]
+        print (TABLE (projectfile.findalltickets(True), headers, tablefmt="fancy_grid"))
     else:
         
         jiraticket = JT.ticket(listoftickets[0])

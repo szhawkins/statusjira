@@ -47,7 +47,8 @@ class TestJiraTicket(unittest.TestCase):
         self.assertNotEqual(0, len(project.listofepics()))
     
 #        print project.text()
-        print project.csv()         
+#        print project.csv()         
+        print project.txt()    
 
     def test_epicinit(self):
         #make sure that there are tickets in the list

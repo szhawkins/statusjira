@@ -109,7 +109,7 @@ class file (object):
         assignee_text = assignee_element.text       
         return assignee_text
 
-    def findalltickets (self):
+    def findalltickets (self, displayfmt=False):
         alltickets = list()             #alltickets is returned by this operation
         root = self.__xmlTree.getroot() #Returns the root element
 
@@ -127,9 +127,15 @@ class file (object):
             tktAssignee=self.findassignee(tktelement)                              # Text ("John Smith")
 
             if ((tktType != AG.type._subtask) or (AG.ARGS.include_subtasks())):
-                alltickets.append ((tktNumber    , tktType     , tktSummary  , tktStatus , 
-                                    tktsecplanned, tktsecworked, tktsecremain, tktEpicRef, 
-                                    tktScrumTeam , tktAssignee))
+                if (displayfmt):
+                    alltickets.append ((tktNumber, tktEpicRef  , tktAssignee, tktScrumTeam, 
+                                        AG.type._name[tktType] , 
+                                        AG.status._text[tktStatus], 
+                                        AG.status._percentcomplete[tktStatus], tktSummary))
+                else:                    
+                    alltickets.append ((tktNumber    , tktType     , tktSummary  , tktStatus , 
+                                        tktsecplanned, tktsecworked, tktsecremain, tktEpicRef, 
+                                        tktScrumTeam , tktAssignee))
 
         return alltickets
 

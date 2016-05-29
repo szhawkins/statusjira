@@ -2,6 +2,7 @@
 
 from statusjira import appglobal as AG
 from statusjira import jiraticket as JT
+from tabulate import tabulate as TABLE
 
 class epic (object):
     """Class to contain the tickets of a single Jira epic"""
@@ -67,6 +68,10 @@ class epic (object):
             result.append("\" \"," + tkt.csv() + "\n")
 
         return ''.join(result)
+
+    def txt(self):
+        result = "Text formatting for project is not complete\n"
+        return result
 
 class project (object):
     
@@ -145,6 +150,15 @@ class project (object):
 
         for epic in self.__listofepics:
             result.append(epic.csv())
+
+        return ''.join(result)
+
+    def txt (self):
+
+        result = list()
+
+        for epic in self.__listofepics:
+            result.append(epic.txt())
 
         return ''.join(result)
 

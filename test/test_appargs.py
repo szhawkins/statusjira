@@ -27,12 +27,20 @@ class TestArgs(unittest.TestCase):
         self.assertTrue(self._args.parse(self._argv, self._beverbose))
         self.assertIsNone(self._args.errortext())
         self.assertTrue (self._args.outfmtcsv())
+        self.assertFalse(self._args.outfmttxt())
         self.assertFalse(self._args.outfmthtml())
 
         self._argv[1] = '--html'
         self.assertTrue(self._args.parse(self._argv, self._beverbose))
         self.assertFalse(self._args.outfmtcsv())
+        self.assertFalse(self._args.outfmttxt())
         self.assertTrue (self._args.outfmthtml())
+
+        self._argv[1] = '--txt'
+        self.assertTrue(self._args.parse(self._argv, self._beverbose))
+        self.assertFalse(self._args.outfmtcsv())
+        self.assertFalse (self._args.outfmthtml())
+        self.assertTrue (self._args.outfmttxt())
 
     def test_no_args(self):
         # Parsing the commandline with no arguments

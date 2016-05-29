@@ -41,6 +41,7 @@ class args (object):
         try: 
             optlist, args = getopt.getopt(argv[1:], '-h', ['outfile=', 
                                                            'csv',
+                                                           'txt',
                                                            'html',
                                                            'groupepics',
                                                            'groupteams',
@@ -58,6 +59,8 @@ class args (object):
                 self.__outputfile=val
             elif (opt == '--csv'):
                 self.__outputfmt = 'csv'  # For lower case compare
+            elif (opt == '--txt'):
+                self.__outputfmt = 'txt'  # For lower case compare
             elif (opt == '--html'):
                 self.__outputfmt = 'html' # For lower case compare
             elif (opt == '--groupepics'):
@@ -99,6 +102,9 @@ class args (object):
     def outfmthtml(self):
         return (self.__outputfmt == 'html')
 
+    def outfmttxt(self):
+        return (self.__outputfmt == 'txt')
+
     def groupepics(self):
         return (self.__groupby == 'epic')
 
@@ -116,6 +122,7 @@ class args (object):
                "OPTIONS: \n" + \
                "--outfile=FILE\tWrite the report to FILE\n"                         + \
                "--csv\t\tFormat the ouptput as a .csv file\n"                       + \
+               "--txt\t\tFormat the outtput as text\n"                              + \
                "--html\t\tFormat the output as an HTML file\n"                      + \
                "--include-subtasks  Include Subtask tickets in the output report\n" + \
                "--help, -h\tHelp\n"
